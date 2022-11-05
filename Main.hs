@@ -20,6 +20,24 @@ calc2 f = f + (zwiekszOjeden f)
 -- reszta z dzielenia i sprawdzenie czy == 0 żeby otrzymać wartość Bool
 dzieliSIE n k = mod n k == 0
 
+-- krotki - tuple czyli nawiasy
+student1 = ("Kamil", "Nowak", 15654878)
+student2 = ("Jan", "Kowalski", 12354778)
+student3 = ("Tomasz", "Jaskiniowiec", 58754778)
+
+-- lista
+grupa = [student1, student2] -- to nie jest zmienna, jest to wartość, którą zdefiniowaliśmy
+kolejnySTUDENT x lista = [x]++lista
+
+-- lista, która składa się z tupli
+-- student, przedmiot, ocena
+oceny1 = (student1, [("JiPP", 5.0), ("WdP", 3)])
+
+-- lista w tuplach czyli dodanie listy żeby można było dodać więcej ocen
+-- wszystkie pozycje z liście mają ten sam typ ale ich ilość jest nieograniczona
+-- za to tuple mogą przyjmować różne typy danych dlatego można łączyć je w taki sposób
+oceny1 = (student1, [("JiPP", [5.0,4.5]), ("WdP", 3)])
+
 main :: IO ()
 main = do
   print $ "tom"
@@ -45,3 +63,9 @@ main = do
 -- koniec
   print $ dzieliSIE 10 2 
   print $ dzieliSIE 10 3
+
+  print $ student1
+  print $ student2
+  print $ grupa
+  print $ kolejnySTUDENT student3 grupa
+  print $ oceny1
