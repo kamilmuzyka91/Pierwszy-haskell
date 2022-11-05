@@ -9,6 +9,16 @@ jestZEREM d = d == 0
 zwiekszOjeden d = d + 1
 zSUMUJ a b = a + b
 
+zILOCZYNUJ a b = a * b
+
+e = 4
+f = 6.1
+
+calc a b = e + f 
+calc2 f = f + (zwiekszOjeden f)
+
+-- reszta z dzielenia i sprawdzenie czy == 0 żeby otrzymać wartość Bool
+dzieliSIE n k = mod n k == 0
 
 main :: IO ()
 main = do
@@ -24,4 +34,14 @@ main = do
   print $ jestUJEMNA (-1)
   print $ jestZEREM 0
   print $ zwiekszOjeden 2
-  print $ zSUMUJ 2 3
+  print $ zSUMUJ 2 30
+  print $ zSUMUJ 2 75.5562
+-- poniższe funkcje to "to samo" ponieważ bie funkcje operują na dodawaniu, a dodawanie jest przemienne więc kolejność złożenia jest bez znaczenia
+  print $ zwiekszOjeden (calc e f) -- funkcja calc jest argumentem innej funkcji
+  print $ zSUMUJ e (zwiekszOjeden f)
+-- tutaj kolejność ma znaczenie więc trzeba na to zwracać uwagę
+  print $ zwiekszOjeden (zILOCZYNUJ e f) 
+  print $ zILOCZYNUJ e (zwiekszOjeden f ) 
+-- koniec
+  print $ dzieliSIE 10 2 
+  print $ dzieliSIE 10 3
