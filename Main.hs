@@ -1,71 +1,78 @@
-imie = "Kamil"
-x = 5
+-- Czy liczba ujemna
+czyUjemna liczba =
+  if liczba < 0
+    then "Liczba ujemna"
+    else "Liczba nieujemna"
 
-jestDUZEB y = y == 'B' -- funkcja
-jestDODATNIA a = a > 0 -- czy liczba jest dodatnia
-jestUJEMNA c = c < 0
-jestZEREM d = d == 0
+-- Silnia
+silnia n =
+  if n < 2
+    then 1
+    else silnia (n - 1) * n
 
-zwiekszOjeden d = d + 1
-zSUMUJ a b = a + b
+-- Silnia ze strażnikami
+silniaStraznik n
+  | n < 2 = 1
+  | n >= 2 = silniaStraznik (n - 1) * n
 
-zILOCZYNUJ a b = a * b
+-- Silnia ze strażnikami 2
+silniaStraznikDwa n
+  | n < 2 = 1
+  | otherwise = silniaStraznik (n - 1) * n
 
-e = 4
-f = 6.1
+-- Silnia wielokrotna
+silniaWielokrotna 0 = 1
+silniaWielokrotna 1 = 1
+silniaWielokrotna n = silniaWielokrotna (n - 1) * n
 
-calc a b = e + f 
-calc2 f = f + (zwiekszOjeden f)
+-- Silnia case
+silniaCase n = case n of
+  0 -> 1
+  1 -> 1
+  n -> silniaCase (n - 1) * n
 
--- reszta z dzielenia i sprawdzenie czy == 0 żeby otrzymać wartość Bool
-dzieliSIE n k = mod n k == 0
+-- Ciąg Fibonacciego Strażnicy
+fibonacciStraznik n
+  | n < 3 = 1
+  | n >= 3 = (fibonacci (n - 1) + fibonacci (n - 2))
 
--- krotki - tuple czyli nawiasy
-student1 = ("Kamil", "Nowak", 15654878)
-student2 = ("Jan", "Kowalski", 12354778)
-student3 = ("Tomasz", "Jaskiniowiec", 58754778)
+-- Ciąg Fibonacciego Strażnicy 2
+fibonacciStraznikDwa n
+  | n < 3 = 1
+  | otherwise = (fibonacci (n - 1) + fibonacci (n - 2))
 
--- lista
-grupa = [student1, student2] -- to nie jest zmienna, jest to wartość, którą zdefiniowaliśmy
-kolejnySTUDENT x lista = [x]++lista
+-- Ciąg Fibonacciego
+fibonacci n =
+  if n < 3
+    then 1
+    else fibonacci (n - 1) + fibonacci (n - 2)
 
--- lista, która składa się z tupli
--- student, przedmiot, ocena
-oceny1 = (student1, [("JiPP", 5.0), ("WdP", 3)])
+-- Ciąg Fibonacciego definiowany wielokrotnie
+fibonacciDefinicja 1 = 1
+fibonacciDefinicja 2 = 1
+fibonacciDefinicja n = fibonacciDefinicja (n - 1) + fibonacciDefinicja (n - 2)
 
--- lista w tuplach czyli dodanie listy żeby można było dodać więcej ocen
--- wszystkie pozycje z liście mają ten sam typ ale ich ilość jest nieograniczona
--- za to tuple mogą przyjmować różne typy danych dlatego można łączyć je w taki sposób
-oceny1 = (student1, [("JiPP", [5.0,4.5]), ("WdP", 3)])
+-- Ciąg Fibonacciego na case
+fibonacciCase n = case n of
+  1 -> 1
+  2 -> 1
+  n -> fibonacciCase (n - 1) + fibonacciCase (n - 2)
 
 main :: IO ()
 main = do
-  print $ "tom"
-  print $ "Dom" -- komentarz jednoliniowy
-  print $ "Mam na imie " ++ imie
-  print $ x
-  print $ jestDUZEB 'B' -- wywołanie funkcji zwróci TRUE
-  print $ jestDUZEB 'b' -- zwróci false
-  print $ jestDODATNIA 5 
-{- komentarz wieloliniowy -}
-  -- ŹLE print $ jestUJEMNA -10
-  print $ jestUJEMNA (-1)
-  print $ jestZEREM 0
-  print $ zwiekszOjeden 2
-  print $ zSUMUJ 2 30
-  print $ zSUMUJ 2 75.5562
--- poniższe funkcje to "to samo" ponieważ bie funkcje operują na dodawaniu, a dodawanie jest przemienne więc kolejność złożenia jest bez znaczenia
-  print $ zwiekszOjeden (calc e f) -- funkcja calc jest argumentem innej funkcji
-  print $ zSUMUJ e (zwiekszOjeden f)
--- tutaj kolejność ma znaczenie więc trzeba na to zwracać uwagę
-  print $ zwiekszOjeden (zILOCZYNUJ e f) 
-  print $ zILOCZYNUJ e (zwiekszOjeden f ) 
--- koniec
-  print $ dzieliSIE 10 2 
-  print $ dzieliSIE 10 3
+  print $ czyUjemna 5
+  print $ czyUjemna (-3)
 
-  print $ student1
-  print $ student2
-  print $ grupa
-  print $ kolejnySTUDENT student3 grupa
-  print $ oceny1
+  print "Silnia"
+  print $ silnia 1
+  print $ silniaStraznik 5
+  print $ silniaStraznikDwa 2
+  print $ silniaWielokrotna 1
+  print $ silniaCase 3
+
+  print "Ciag Fibonacciego"
+  print $ fibonacciStraznik 2
+  print $ fibonacciStraznikDwa 5
+  print $ fibonacci 2
+  print $ fibonacciDefinicja 5
+  print $ fibonacciCase 6
